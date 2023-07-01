@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.OrderService", "Ps
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.Models", "Ps.Ecomm.Models\Ps.Ecomm.Models.csproj", "{73847A92-E2A0-4AB0-B386-9EDBCD1A017B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.PlaneRabbitMQ", "Ps.Ecomm.PlaneRabbitMQ\Ps.Ecomm.PlaneRabbitMQ.csproj", "{96BB922C-B748-4B9C-921E-20A3D008DAB3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{73847A92-E2A0-4AB0-B386-9EDBCD1A017B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73847A92-E2A0-4AB0-B386-9EDBCD1A017B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73847A92-E2A0-4AB0-B386-9EDBCD1A017B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96BB922C-B748-4B9C-921E-20A3D008DAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96BB922C-B748-4B9C-921E-20A3D008DAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96BB922C-B748-4B9C-921E-20A3D008DAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96BB922C-B748-4B9C-921E-20A3D008DAB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

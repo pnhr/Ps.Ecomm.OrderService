@@ -1,8 +1,7 @@
-﻿
+﻿using MassTransit;
 using Ps.Ecomm.Models;
 using Ps.Ecomm.OrderService.DataAccess;
-using Ps.Ecomm.PlaneRabbitMQ;
-using RabbitMQ.Client;
+//using RabbitMQ.Client;
 
 namespace Ps.Ecomm.OrderService.AppStart
 {
@@ -24,10 +23,18 @@ namespace Ps.Ecomm.OrderService.AppStart
             var dbConnStr = config.GetConnectionString("AppDb");
             var rabbitMqConnStr = config.GetConnectionString("RabbitMqConnStr");
             services.AddSingleton<IOrderDetailsProvider>(new OrderDetailsProvider(dbConnStr));
-            services.AddSingleton<IConnectionProvider>(new ConnectionProvider(rabbitMqConnStr));
-            services.AddScoped<IPublisher>(x => new Publisher(x.GetService<IConnectionProvider>(), 
-                                                                MQConstants.EXCHANGE_REPORT,
-                                                                ExchangeType.Topic));
+            services.AddMassTransit(config =>
+            {
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(rabbitMqConnStr);
+                });
+            });
+
+            //services.AddSingleton<IConnectionProvider>(new ConnectionProvider(rabbitMqConnStr));
+            //services.AddScoped<IPublisher>(x => new Publisher(x.GetService<IConnectionProvider>(), 
+            //                                                    MQConstants.EXCHANGE_REPORT,
+            //                                                    ExchangeType.Topic));
 
 
         }

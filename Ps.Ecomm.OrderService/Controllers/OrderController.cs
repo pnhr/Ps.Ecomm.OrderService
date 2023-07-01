@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Ps.Ecomm.Models;
 using Ps.Ecomm.OrderService.DataAccess;
-using Ps.Ecomm.PlaneRabbitMQ;
 using System.Text.Json;
 
 namespace Ps.Ecomm.OrderService.Controllers
@@ -11,9 +11,9 @@ namespace Ps.Ecomm.OrderService.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderDetailsProvider orderDetailsProvider;
-        private readonly IPublisher publisher;
+        private readonly IPublishEndpoint publisher;
 
-        public OrderController(IOrderDetailsProvider orderDetailsProvider, IPublisher publisher)
+        public OrderController(IOrderDetailsProvider orderDetailsProvider, IPublishEndpoint publisher)
         {
             this.orderDetailsProvider = orderDetailsProvider;
             this.publisher = publisher;
@@ -29,10 +29,8 @@ namespace Ps.Ecomm.OrderService.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrderDetail orderDetail)
         {
-            IDictionary<string, object> messageMetadata = new Dictionary<string, object>();
-            messageMetadata.Add(MQConstants.OBJECT_TYPE, Convert.ToString(orderDetail));
-            publisher.Publish(JsonSerializer.Serialize(orderDetail), MQConstants.ROUTE_KEY_REPORT_ORDER, messageMetadata);
-            return await Task.FromResult(Ok());
+            await publisher.Publish<OrderDetail>(orderDetail);
+            return Ok();
         }
     }
 }

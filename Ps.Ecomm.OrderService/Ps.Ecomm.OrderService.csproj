@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.143" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.16" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
@@ -18,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ps.Ecomm.Models\Ps.Ecomm.Models.csproj" />
-    <ProjectReference Include="..\Ps.Ecomm.PlaneRabbitMQ\Ps.Ecomm.PlaneRabbitMQ.csproj" />
   </ItemGroup>
 
 </Project>
