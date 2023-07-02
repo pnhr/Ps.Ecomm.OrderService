@@ -4,6 +4,6 @@ namespace Ps.Ecomm.OrderService.DataAccess
 {
     public interface IOrderDetailsProvider
     {
-        Task<OrderDetail[]> Get();
+        Task<OrderDetail[]> GetAsync();
     }
 }

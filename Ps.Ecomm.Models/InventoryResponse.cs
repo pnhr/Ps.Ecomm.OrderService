@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ps.Ecomm.Models
 {
-    public class OrderDetail
+    public class InventoryResponse
     {
-        public string User { get; set; }
         public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public int Quantity { get; set; }
+        public bool IsSuccess { get; set; }
     }
 }

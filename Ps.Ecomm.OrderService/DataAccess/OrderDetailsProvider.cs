@@ -13,7 +13,7 @@ namespace Ps.Ecomm.OrderService.DataAccess
         {
             _connectionString = connectionString;
         }
-        public async Task<OrderDetail[]> Get()
+        public async Task<OrderDetail[]> GetAsync()
         {
             try
             {

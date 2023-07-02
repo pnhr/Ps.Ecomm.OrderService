@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using Ps.Ecomm.Models;
 using Ps.Ecomm.OrderService.DataAccess;
+using Ps.Ecomm.OrderService.Listeners;
 //using RabbitMQ.Client;
 
 namespace Ps.Ecomm.OrderService.AppStart
@@ -23,11 +24,20 @@ namespace Ps.Ecomm.OrderService.AppStart
             var dbConnStr = config.GetConnectionString("AppDb");
             var rabbitMqConnStr = config.GetConnectionString("RabbitMqConnStr");
             services.AddSingleton<IOrderDetailsProvider>(new OrderDetailsProvider(dbConnStr));
+            services.AddSingleton<IOrderCreator>(x => new OrderCreator(dbConnStr, x.GetService<ILogger<OrderCreator>>()));
+            services.AddSingleton<IOrderDeleter>(new OrderDeleter(dbConnStr));
+
             services.AddMassTransit(config =>
             {
+                config.AddConsumer<InventoryResponseConsumer>();
+
                 config.UsingRabbitMq((ctx, cfg) =>
                 {
                     cfg.Host(rabbitMqConnStr);
+                    cfg.ReceiveEndpoint("inventory-queue", c =>
+                    {
+                        c.ConfigureConsumer<InventoryResponseConsumer>(ctx);
+                    });
                 });
             });
         }
