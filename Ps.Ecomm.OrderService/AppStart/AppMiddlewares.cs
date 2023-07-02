@@ -7,6 +7,7 @@
             // Configure the HTTP request pipeline.
             app.UseSwagger();
             app.UseSwaggerUI(c => {
+                c.DocumentTitle = "Swagger UI | Ps Ecomm Order Service";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ps Ecomm Order Service");
             });
 
