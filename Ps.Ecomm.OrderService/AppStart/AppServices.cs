@@ -30,13 +30,6 @@ namespace Ps.Ecomm.OrderService.AppStart
                     cfg.Host(rabbitMqConnStr);
                 });
             });
-
-            //services.AddSingleton<IConnectionProvider>(new ConnectionProvider(rabbitMqConnStr));
-            //services.AddScoped<IPublisher>(x => new Publisher(x.GetService<IConnectionProvider>(), 
-            //                                                    MQConstants.EXCHANGE_REPORT,
-            //                                                    ExchangeType.Topic));
-
-
         }
     }
 }
